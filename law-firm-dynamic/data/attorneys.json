@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "margaret-calloway",
+    "name": "Margaret Calloway",
+    "title": "Founding Partner",
+    "initials": "MC",
+    "practiceAreas": ["Family Law", "Estate Planning & Probate"],
+    "barAdmissions": ["Oregon State Bar", "Washington State Bar"],
+    "education": ["J.D., Lewis & Clark Law School", "B.A., Political Science, University of Oregon"],
+    "bio": "Margaret founded the firm in 2008 after eight years practicing family law at a larger Portland firm. She has handled more than 600 family law and estate matters, and is known for keeping clients focused on long-term outcomes during some of the hardest weeks of their lives. She is a frequent volunteer mediator with the county's family court self-help center.",
+    "email": "mcalloway@callowayreyeslaw.com",
+    "phoneExt": "201"
+  },
+  {
+    "slug": "daniel-reyes",
+    "name": "Daniel Reyes",
+    "title": "Founding Partner",
+    "initials": "DR",
+    "practiceAreas": ["Criminal Defense", "Personal Injury"],
+    "barAdmissions": ["Oregon State Bar"],
+    "education": ["J.D., University of Oregon School of Law", "B.S., Criminal Justice, Portland State University"],
+    "bio": "Daniel spent six years as a public defender before co-founding the firm, and that courtroom experience still shapes how he prepares every case. He has tried more than 50 cases to verdict and is board-certified in criminal trial advocacy. Outside the office, he coaches youth basketball in the neighborhood he grew up in.",
+    "email": "dreyes@callowayreyeslaw.com",
+    "phoneExt": "202"
+  },
+  {
+    "slug": "priya-anand",
+    "name": "Priya Anand",
+    "title": "Senior Associate",
+    "initials": "PA",
+    "practiceAreas": ["Business & Corporate Law"],
+    "barAdmissions": ["Oregon State Bar", "California State Bar"],
+    "education": ["J.D., UC Berkeley School of Law", "B.A., Economics, University of Washington"],
+    "bio": "Priya joined the firm in 2019 after several years advising startups at a San Francisco firm, and now serves as outside counsel to dozens of small and mid-sized businesses across the Pacific Northwest. She specializes in formation, contracts, and the kind of practical guidance that keeps business owners out of court in the first place.",
+    "email": "panand@callowayreyeslaw.com",
+    "phoneExt": "205"
+  },
+  {
+    "slug": "jonathan-ortiz",
+    "name": "Jonathan Ortiz",
+    "title": "Associate",
+    "initials": "JO",
+    "practiceAreas": ["Real Estate Law"],
+    "barAdmissions": ["Oregon State Bar"],
+    "education": ["J.D., Willamette University College of Law", "B.A., Urban Studies, Portland State University"],
+    "bio": "Jonathan represents buyers, sellers, and landlords across residential and commercial transactions, and previously worked in title insurance before law school, which gives him an eye for the closing issues that catch other buyers off guard.",
+    "email": "jortiz@callowayreyeslaw.com",
+    "phoneExt": "207"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "family-law",
+    "docketCode": "FL-100",
+    "name": "Family Law",
+    "summary": "Divorce, custody, and support matters handled with a steady hand.",
+    "details": "We represent clients through divorce, legal separation, custody and parenting-time disputes, child and spousal support, and post-decree modifications. Every family situation is different, so we start by listening, then map out a plan that protects your children and your interests without dragging the process out longer than it needs to be.",
+    "representativeMatters": [
+      "Contested and uncontested divorce",
+      "Custody and parenting-time plans",
+      "Child and spousal support modifications",
+      "Prenuptial and postnuptial agreements"
+    ]
+  },
+  {
+    "slug": "criminal-defense",
+    "docketCode": "CR-200",
+    "name": "Criminal Defense",
+    "summary": "Defense representation from arraignment through trial.",
+    "details": "Facing a criminal charge is disorienting, and the first 48 hours often matter most. We handle misdemeanor and felony defense, DUI charges, and post-conviction relief, and we're direct with clients about realistic outcomes at every stage instead of overpromising.",
+    "representativeMatters": [
+      "DUI and traffic offenses",
+      "Misdemeanor and felony defense",
+      "Arraignment and bail hearings",
+      "Expungement and record sealing"
+    ]
+  },
+  {
+    "slug": "personal-injury",
+    "docketCode": "PI-300",
+    "name": "Personal Injury",
+    "summary": "Representation for people injured by someone else's negligence.",
+    "details": "We represent people hurt in car and motorcycle accidents, slip-and-fall incidents, and by defective products, working on contingency so there's no fee unless we recover for you. We deal directly with insurance adjusters so you can focus on getting better.",
+    "representativeMatters": [
+      "Car, motorcycle, and pedestrian accidents",
+      "Slip-and-fall and premises liability",
+      "Product liability claims",
+      "Insurance claim disputes"
+    ]
+  },
+  {
+    "slug": "estate-planning-probate",
+    "docketCode": "EP-400",
+    "name": "Estate Planning & Probate",
+    "summary": "Wills, trusts, and probate administration for individuals and families.",
+    "details": "We draft wills, revocable and irrevocable trusts, and powers of attorney tailored to your family and assets, and we guide executors and administrators through the probate process when a loved one passes without one properly in place.",
+    "representativeMatters": [
+      "Wills and revocable living trusts",
+      "Powers of attorney and healthcare directives",
+      "Probate and estate administration",
+      "Trust and estate disputes"
+    ]
+  },
+  {
+    "slug": "business-corporate",
+    "docketCode": "BC-500",
+    "name": "Business & Corporate Law",
+    "summary": "Formation, contracts, and counsel for owner-operated businesses.",
+    "details": "From entity formation and operating agreements to contract review and vendor disputes, we serve as outside general counsel for small and mid-sized businesses across the region, so owners have someone to call before a problem becomes expensive.",
+    "representativeMatters": [
+      "LLC and corporation formation",
+      "Contract drafting and review",
+      "Partnership and shareholder agreements",
+      "Business disputes and negotiations"
+    ]
+  },
+  {
+    "slug": "real-estate",
+    "docketCode": "RE-600",
+    "name": "Real Estate Law",
+    "summary": "Purchase, sale, and dispute representation for residential and commercial property.",
+    "details": "We handle residential and commercial purchase agreements, title issues, boundary and easement disputes, and landlord-tenant matters, working closely with lenders and agents to keep closings on schedule.",
+    "representativeMatters": [
+      "Residential and commercial purchase agreements",
+      "Title disputes and easements",
+      "Landlord-tenant matters",
+      "Closing representation"
+    ]
+  }
+]

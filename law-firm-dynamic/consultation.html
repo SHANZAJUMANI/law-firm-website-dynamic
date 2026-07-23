@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request a Consultation — Calloway Reyes LLP</title>
+  <meta name="description" content="Request a free initial consultation with Calloway Reyes LLP, a Portland, Oregon law firm." />
+  <link rel="canonical" href="https://calloway-reyes-law.netlify.app/consultation.html" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Request a Consultation — Calloway Reyes LLP" />
+  <meta property="og:description" content="Request a free initial consultation with a Portland, Oregon law firm." />
+  <meta property="og:url" content="https://calloway-reyes-law.netlify.app/consultation.html" />
+  <meta name="theme-color" content="#10182b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="consultation">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__brand">
+        <svg width="36" height="36" viewBox="0 0 48 48" role="img" aria-label="Firm seal">
+          <circle cx="24" cy="24" r="22.5" fill="none" stroke="var(--ink)" stroke-width="1.5" />
+          <circle cx="24" cy="24" r="18.5" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.55" />
+          <text x="24" y="29" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-weight="600" font-size="15" fill="var(--ink)">C&amp;R</text>
+        </svg>
+        <span class="nav__brand-text">
+          <span data-firm-field="name">Calloway Reyes</span>
+          <span class="nav__brand-sub" data-firm-field="tagline">Attorneys at Law</span>
+        </span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html" class="nav__link" data-page="home">Home</a>
+        <a href="practice-areas.html" class="nav__link" data-page="practice-areas">Practice Areas</a>
+        <a href="attorneys.html" class="nav__link" data-page="attorneys">Attorneys</a>
+        <a href="consultation.html" class="nav__link" data-page="consultation">Request a Consultation</a>
+        <a class="btn btn--primary nav__cta" href="tel:+15035551200"><span data-firm-field="phoneDisplay">(503) 555-1200</span></a>
+      </nav>
+
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Success state (hidden until a valid submission goes through) -->
+    <section class="section" id="consult-success" hidden>
+      <div class="container consult-success">
+        <span class="eyebrow">Request Received</span>
+        <h1>Thank you — we&rsquo;ll be in touch shortly.</h1>
+        <p>
+          A member of our intake team reviews every request within one business day. If your matter is urgent,
+          please call the office directly at
+          <a href="tel:+15035551200" class="consult-success__phone"><span data-firm-field="phoneDisplay">(503) 555-1200</span></a>.
+        </p>
+        <button class="btn btn--ghost" id="consult-reset" type="button">Submit another request</button>
+      </div>
+    </section>
+
+    <div class="page-head-wrap" id="consult-form-wrap">
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Get Started</span>
+          <h1>Request a consultation</h1>
+          <p class="page-hero__lede">
+            Tell us briefly what&rsquo;s going on and how to reach you. There&rsquo;s no fee for the initial
+            consultation, and nothing here creates an attorney-client relationship until we&rsquo;ve confirmed
+            representation in writing.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container consult-layout">
+          <!--
+            Netlify Forms: the name + data-netlify attributes here let Netlify's
+            build bot detect this form and provision a submissions endpoint and
+            dashboard automatically — no server code required. The hidden
+            "form-name" input and the netlify-honeypot attribute are part of
+            that same mechanism (see js/consultation.js for the JS submit).
+          -->
+          <form
+            class="consult-form"
+            id="consult-form"
+            name="enquiry"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="company"
+            novalidate
+          >
+            <input type="hidden" name="form-name" value="enquiry" />
+
+            <div class="consult-errors" id="consult-errors" role="alert" hidden>
+              <p class="consult-errors__title">Please fix the following:</p>
+              <ul id="consult-errors-list"></ul>
+            </div>
+
+            <div class="consult-field">
+              <label for="fullName">Full name</label>
+              <input id="fullName" name="fullName" type="text" autocomplete="name" required />
+            </div>
+
+            <div class="consult-row">
+              <div class="consult-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="consult-field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+              </div>
+            </div>
+
+            <div class="consult-row">
+              <div class="consult-field">
+                <label for="practiceArea">Practice area</label>
+                <select id="practiceArea" name="practiceArea" required>
+                  <option value="" disabled selected>Select one&hellip;</option>
+                </select>
+              </div>
+
+              <div class="consult-field">
+                <label for="preferredContact">Preferred contact method</label>
+                <select id="preferredContact" name="preferredContact">
+                  <option value="either">Either is fine</option>
+                  <option value="email">Email</option>
+                  <option value="phone">Phone</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="consult-field">
+              <label for="message">Tell us briefly what&rsquo;s going on</label>
+              <textarea id="message" name="message" rows="6" required></textarea>
+            </div>
+
+            <!-- Honeypot — hidden from real visitors via CSS, kept out of the tab order.
+                 Netlify's spam filter checks this field automatically (netlify-honeypot). -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <button class="btn btn--primary consult-submit" type="submit" id="consult-submit">Submit request</button>
+
+            <p class="consult-disclaimer">
+              Submitting this form does not create an attorney-client relationship. Please avoid sharing highly
+              sensitive details until we&rsquo;ve confirmed representation.
+            </p>
+          </form>
+
+          <aside class="consult-aside">
+            <h2>Prefer to talk now?</h2>
+            <p>Our intake line is staffed weekdays, 8:30 AM – 5:30 PM Pacific.</p>
+            <a href="tel:+15035551200" class="consult-aside__phone"><span data-firm-field="phoneDisplay">(503) 555-1200</span></a>
+            <div class="consult-aside__divider"></div>
+            <h2>Office</h2>
+            <address><span data-firm-field="addressLine1">1420 SW Harbor Way, Suite 620</span><br /><span data-firm-field="addressLine2">Portland, OR 97201</span></address>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg width="40" height="40" viewBox="0 0 48 48" role="img" aria-hidden="true">
+          <circle cx="24" cy="24" r="22.5" fill="none" stroke="var(--brass)" stroke-width="1.5" />
+          <circle cx="24" cy="24" r="18.5" fill="none" stroke="var(--brass)" stroke-width="1" opacity="0.55" />
+          <text x="24" y="29" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-weight="600" font-size="15" fill="var(--brass)">C&amp;R</text>
+        </svg>
+        <div>
+          <p class="footer__name" data-firm-field="name">Calloway Reyes LLP</p>
+          <p class="footer__tag">Attorneys at Law · Portland, Oregon</p>
+        </div>
+      </div>
+
+      <div class="footer__grid">
+        <div>
+          <p class="footer__col-head">Office</p>
+          <address class="footer__address"><span data-firm-field="addressLine1">1420 SW Harbor Way, Suite 620</span><br /><span data-firm-field="addressLine2">Portland, OR 97201</span></address>
+          <a href="tel:+15035551200" class="footer__link"><span data-firm-field="phoneDisplay">(503) 555-1200</span></a>
+          <a href="mailto:intake@callowayreyeslaw.com" class="footer__link"><span data-firm-field="email">intake@callowayreyeslaw.com</span></a>
+        </div>
+        <div>
+          <p class="footer__col-head">Firm</p>
+          <a class="footer__link" href="practice-areas.html">Practice Areas</a>
+          <a class="footer__link" href="attorneys.html">Attorneys</a>
+          <a class="footer__link" href="consultation.html">Request a Consultation</a>
+        </div>
+        <div>
+          <p class="footer__col-head">Office Hours</p>
+          <div data-firm-hours></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>&copy; <span id="year"></span> <span data-firm-field="name">Calloway Reyes LLP</span>. All rights reserved.</p>
+        <p class="footer__disclaimer">
+          Prior results do not guarantee a similar outcome. This site is for general information and does not
+          constitute legal advice. No attorney-client relationship is formed by submitting the consultation form.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/content-loader.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/consultation.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    loadSiteContent().then(function (content) {
+      var select = document.getElementById("practiceArea");
+      content.practiceAreas.forEach(function (area) {
+        var opt = document.createElement("option");
+        opt.value = area.name;
+        opt.textContent = area.name;
+        select.appendChild(opt);
+      });
+      var notSure = document.createElement("option");
+      notSure.value = "Not sure";
+      notSure.textContent = "Not sure — help me figure it out";
+      select.appendChild(notSure);
+    });
+  </script>
+</body>
+</html>

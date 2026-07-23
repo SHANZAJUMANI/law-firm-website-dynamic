@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Calloway Reyes LLP</title>
+  <!-- Deliberately not linked from any nav/footer, and excluded from search
+       engines both here and in robots.txt. -->
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .admin-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+    .admin-gate {
+      max-width: 400px;
+      margin: 96px auto;
+      background: var(--white);
+      border: 1px solid var(--parchment-line);
+      border-radius: 4px;
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+    }
+    .admin-gate h1 {
+      font-size: 1.4rem;
+    }
+    .admin-gate input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--parchment-line);
+      border-radius: 3px;
+      background: var(--parchment);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      margin: 14px 0 18px;
+    }
+    .admin-error {
+      color: var(--error);
+      font-size: 0.88rem;
+      margin: 0 0 14px;
+    }
+    .admin-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--parchment-line);
+      border-radius: 4px;
+      background: var(--white);
+    }
+    table.admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    table.admin-table th,
+    table.admin-table td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--parchment-line);
+      vertical-align: top;
+    }
+    table.admin-table th {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--slate);
+      background: var(--parchment-2);
+      white-space: nowrap;
+    }
+    table.admin-table td.admin-message {
+      max-width: 320px;
+      white-space: pre-wrap;
+    }
+    .admin-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .admin-refresh {
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body data-page="admin">
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__brand">
+        <svg width="36" height="36" viewBox="0 0 48 48" role="img" aria-label="Firm seal">
+          <circle cx="24" cy="24" r="22.5" fill="none" stroke="var(--ink)" stroke-width="1.5" />
+          <circle cx="24" cy="24" r="18.5" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.55" />
+          <text x="24" y="29" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-weight="600" font-size="15" fill="var(--ink)">C&amp;R</text>
+        </svg>
+        <span class="nav__brand-text">
+          <span data-firm-field="name">Calloway Reyes</span>
+          <span class="nav__brand-sub">Internal — Admin</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Password gate -->
+    <div class="admin-gate" id="admin-gate">
+      <h1>Admin sign-in</h1>
+      <p class="muted">Enter the admin password to view consultation requests.</p>
+      <form id="admin-login-form">
+        <input type="password" id="admin-password" placeholder="Password" autocomplete="current-password" required />
+        <p class="admin-error" id="admin-login-error" hidden></p>
+        <button class="btn btn--primary" type="submit" style="width:100%">Sign in</button>
+      </form>
+    </div>
+
+    <!-- Submissions view (shown after successful sign-in) -->
+    <div class="admin-wrap" id="admin-content" hidden>
+      <div class="admin-top">
+        <div>
+          <span class="eyebrow">Internal</span>
+          <h1 style="margin-top:0.3em">Consultation requests</h1>
+        </div>
+        <button class="btn btn--ghost admin-refresh" id="admin-refresh">Refresh</button>
+      </div>
+
+      <p class="admin-error" id="admin-load-error" hidden></p>
+      <p class="muted" id="admin-loading">Loading submissions&hellip;</p>
+      <p class="muted" id="admin-empty" hidden>No submissions yet.</p>
+
+      <div class="admin-table-wrap" id="admin-table-wrap" hidden>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Received</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Practice Area</th>
+              <th>Preferred</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/content-loader.js"></script>
+  <script>
+    loadSiteContent().catch(function () {
+      /* admin page still works without firm.json — non-fatal */
+    });
+
+    (function () {
+      var gate = document.getElementById("admin-gate");
+      var content = document.getElementById("admin-content");
+      var loginForm = document.getElementById("admin-login-form");
+      var loginError = document.getElementById("admin-login-error");
+      var passwordInput = document.getElementById("admin-password");
+
+      var loadError = document.getElementById("admin-load-error");
+      var loading = document.getElementById("admin-loading");
+      var empty = document.getElementById("admin-empty");
+      var tableWrap = document.getElementById("admin-table-wrap");
+      var tableBody = document.getElementById("admin-table-body");
+      var refreshBtn = document.getElementById("admin-refresh");
+
+      var currentPassword = null; // kept in memory only for this page load — never persisted
+
+      function escapeHtml(str) {
+        var div = document.createElement("div");
+        div.textContent = str || "";
+        return div.innerHTML;
+      }
+
+      function fetchSubmissions() {
+        loadError.hidden = true;
+        empty.hidden = true;
+        tableWrap.hidden = true;
+        loading.hidden = false;
+
+        fetch("/.netlify/functions/get-submissions", {
+          headers: { "x-admin-password": currentPassword },
+        })
+          .then(function (res) {
+            return res.json().then(function (body) {
+              if (!res.ok) throw new Error(body.error || "Failed to load submissions.");
+              return body;
+            });
+          })
+          .then(function (body) {
+            loading.hidden = true;
+            var submissions = body.submissions || [];
+            if (submissions.length === 0) {
+              empty.hidden = false;
+              if (body.note) empty.textContent = body.note;
+              return;
+            }
+            tableBody.innerHTML = submissions
+              .map(function (s) {
+                var received = new Date(s.createdAt).toLocaleString();
+                return (
+                  "<tr>" +
+                  "<td>" + escapeHtml(received) + "</td>" +
+                  "<td>" + escapeHtml(s.fullName) + "</td>" +
+                  "<td>" + escapeHtml(s.email) + "<br>" + escapeHtml(s.phone) + "</td>" +
+                  "<td>" + escapeHtml(s.practiceArea) + "</td>" +
+                  "<td>" + escapeHtml(s.preferredContact) + "</td>" +
+                  '<td class="admin-message">' + escapeHtml(s.message) + "</td>" +
+                  "</tr>"
+                );
+              })
+              .join("");
+            tableWrap.hidden = false;
+          })
+          .catch(function (err) {
+            loading.hidden = true;
+            loadError.hidden = false;
+            loadError.textContent = err.message;
+          });
+      }
+
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        currentPassword = passwordInput.value;
+        loginError.hidden = true;
+
+        // Validate the password by making the real request — the function
+        // itself is the source of truth, not any client-side check.
+        fetch("/.netlify/functions/get-submissions", {
+          headers: { "x-admin-password": currentPassword },
+        })
+          .then(function (res) {
+            if (res.status === 401) {
+              loginError.hidden = false;
+              loginError.textContent = "Incorrect password.";
+              return;
+            }
+            if (!res.ok) {
+              return res.json().then(function (body) {
+                loginError.hidden = false;
+                loginError.textContent = body.error || "Something went wrong.";
+              });
+            }
+            gate.hidden = true;
+            content.hidden = false;
+            fetchSubmissions();
+          })
+          .catch(function () {
+            loginError.hidden = false;
+            loginError.textContent = "Couldn't reach the admin function. Is it deployed?";
+          });
+      });
+
+      refreshBtn.addEventListener("click", fetchSubmissions);
+    })();
+  </script>
+</body>
+</html>

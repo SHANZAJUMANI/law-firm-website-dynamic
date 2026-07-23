@@ -1,0 +1,17 @@
+{
+  "name": "Calloway Reyes LLP",
+  "tagline": "Attorneys at Law",
+  "phoneDisplay": "(503) 555-1200",
+  "phoneHref": "+15035551200",
+  "email": "intake@callowayreyeslaw.com",
+  "addressLine1": "1420 SW Harbor Way, Suite 620",
+  "addressLine2": "Portland, OR 97201",
+  "hours": [
+    "Monday – Friday: 8:30 AM – 5:30 PM",
+    "Saturday: By appointment",
+    "Sunday: Closed"
+  ],
+  "yearsInPractice": "17",
+  "mattersResolved": "1,200+",
+  "attorneyCount": "4"
+}
